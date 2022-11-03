@@ -57,8 +57,8 @@ namespace TicTacToe
             if (player == "cross")
             {
                 //change to cross
-                change.Image = Image.FromFile("cross.png");
                 change.ImageLocation = "cross.png";
+                change.Image = Image.FromFile(change.ImageLocation);
                 turn++;
                 IsWinning();
                 player = "circle";
@@ -66,8 +66,8 @@ namespace TicTacToe
             else
             {
                 //change to circle
-                change.Image = Image.FromFile("circle.png");
                 change.ImageLocation = "circle.png";
+                change.Image = Image.FromFile(change.ImageLocation);
                 turn++;
                 IsWinning();
                 player = "cross";
@@ -87,7 +87,7 @@ namespace TicTacToe
         }
         private void IsWinning()
         {
-           if (turn >= (heigth+1)* (width + 1))
+           if (turn >= (heigth+1)*(width + 1))
             {
                 if (MessageBox.Show("Fail, grid full ! Do you want to restart?", "Restart", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
