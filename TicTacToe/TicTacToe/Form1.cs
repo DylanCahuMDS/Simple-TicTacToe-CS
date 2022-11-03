@@ -14,6 +14,7 @@ namespace TicTacToe
         private int width = 2; //consider +1 because first collumn is on index 0
         private int heigth = 2; //consider +1 because first row is on index 0
         private PictureBox[,] grid;
+        private int turn = 0;
 
         public Form1()
         {
@@ -58,6 +59,7 @@ namespace TicTacToe
                 //change to cross
                 change.Image = Image.FromFile("cross.png");
                 change.ImageLocation = "cross.png";
+                turn++;
                 IsWinning();
                 player = "circle";
             }
@@ -66,6 +68,7 @@ namespace TicTacToe
                 //change to circle
                 change.Image = Image.FromFile("circle.png");
                 change.ImageLocation = "circle.png";
+                turn++;
                 IsWinning();
                 player = "cross";
             }
@@ -84,6 +87,18 @@ namespace TicTacToe
         }
         private void IsWinning()
         {
+           if (turn >= (heigth+1)* (width + 1))
+            {
+                if (MessageBox.Show("Fail, grid full ! Do you want to restart?", "Restart", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    Application.Restart();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
+            
             for (int column = 0; column < width + 1; column++)
             {
                 for (int row = 0; row < heigth + 1; row++)
